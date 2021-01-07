@@ -5,160 +5,65 @@
 
 /*General Styling*/
 :root{
-    --font_main: #DDE2FF;
+    --main: #20232a;
 }
-i.material-icons.small{
-    font-size: .9rem;
+
+
+.full-width{
+    width: 100%;
 }
-ul{
-    list-style: none;
+.margined-top{
+    margin-top: 10px;
 }
+.center{
+    margin: auto;
+}.center-text{
+    text-align: center;
+}
+
 .row{
     margin: 0;
-}.container-fluid{
+    padding-right: 0;
+}
+div.col-md-3{
     margin: 0;
     padding-left: 0;
     padding-right: 0;
 }
-.flex{
-    display: flex;
-    flex-wrap: wrap;
-}
-.flex.space-around{
-    justify-content: space-around;
-}.flex.space-between{
-    justify-content: space-between;
-}.vertical-align-sub{
-    vertical-align: sub;
-}.vertical-align-middle{
-    vertical-align: middle;
-}
-
-.rounded{
-    border-radius: 50% !important;
-}
-
-.semi-bold{
-    font-weight: bold;
-}
-i.material-icons{
-    vertical-align: middle;
-}
-.col-md-3, .col-md-9, .col-lg-3, .col-lg-9{
-    margin: 0;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-.title{
-    font-size: 1.6rem;
-}
-.center{
-    text-align: center;
-    margin: auto;
-}
-.small{
-    font-size: .9rem;
-}
-.grey{
-    color: #363740;
-}
-.margined-top{
-    margin-top: 20px;
-}
-.paddinged{
-    padding: 20px;
-}
-.side-paddinged{
-    padding-left: .5rem;
-    padding-right: .5rem;
-}
-.paddinged-right{
-    padding-right: 1rem;
-}
-.btn-float-right{
-    float: right;
-    width: 300px;
-    padding: .5rem;
-}
-
-
-.inline-navbar .list-group-item{
-    cursor: pointer;
-    color: white;
-}
-.inline-navbar .list-group-item:focus{
-    border: none;
-}
-/*Panel Styling*/
-.sidebar{
+/* Sidebar Styles */
+.desktop-sidebar{
     width: 100%;
-    background-color: #363740;
-    color: var(--font_main);
     height: 100vh;
-}
-.sidebar .company-info{
-    width: 100%;
-    background-color: #47495B;
-}
-.sidebar .company-info .company-name .title{
-    font-size: 1.2rem;
-}
-.list-group-item-action:hover {
-    color: rgb(188, 188, 255);
-    background-color: #212529;
-}
-.list-group-item-action.active {
-    color: white;
-    outline-style: none;
-    background: #24272b !important;
-}
-.list-group-item-action:active {
-    color: white;
-    outline-style: none;
-    background: #24272b !important;
-}.list-group-item-action:focus {
-    color: white;
-    outline-style: none;
-    background: #24272b !important;
-}
-.card.company-info-card{
-    width: 100%;
-    border-radius: 0;
-    background-color: transparent;
-}
-.inline-navbar .card{
-    background-color: transparent;
-}
-.inline-navbar .card .list-group-flush .list-group-item{
-    border-radius: 0;
-    border-width: 0 0 0px;
-    background: transparent;
-    padding-top: 1.3rem;
-    padding-bottom: 1.3rem;
-}
-a.signout{
-    color: var(--font_main);
-}a.signout:hover{
-    color: rgb(206, 139, 139);
-    text-decoration: none;
-}a.sidebar-signout{
-    width: fit-content;
     padding: 20px;
-    width: 100%;
-
+    background: var(--main);
 }
-
-/*Task (TODO) Crud*/
-.task-crud{
+nav{
     width: 100%;
 }
-.task-crud ul{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 0 0 0;
-    vertical-align: middle;
-}.task-crud ul li{
-    cursor: pointer;
+.desktop-sidebar .card{
+    background: rgba(255, 255, 255, .1);
+    color: white;
+}.desktop-sidebar .card a{
+    color: grey;
+}.desktop-sidebar .card a:hover{
+    color: white;
+}
+.desktop-nav a{
+    color: white;
+}.desktop-nav a:hover{
+    color: #ccc;
+}
+.desktop-nav a .material-icons{
+    padding: 12.5px 10px;
+    vertical-align: sub;
+}
+
+
+/* Dashboard Header */
+.dashboard .row, .dashboard .col-sm-12, .dashboard .col-sm-3, .dashboard .col-sm-5, .dashboard .col-sm-7{
+    margin: 0;
+    padding: 0;
+}
+.dashboard-header .title{
+    padding: .5rem 0;
 }
