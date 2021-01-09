@@ -5,7 +5,11 @@ import axios from "axios"
 const useFetch = (url) => {
     const [state, setState] = useState([])
     useEffect(() => {
-        axios.get(url).then(snap => setState(snap.data)).catch(err => setState([]))
+        console.log(url)
+        axios.get(url).then(snap => {
+            setState(snap.data)
+            console.log(snap.data)
+        }).catch(err => setState([]))
     }, [url])
 
 

@@ -12,14 +12,16 @@ const router = express.Router()
 
 //external
 const api = require("./api")
+const github = require("./github")
 // const routes = require("./routes")
-const html_template = fs.readFileSync("./public/index.html", "utf8")
+const html_template = fs.readFileSync("./public/html_template.html", "utf8")
 
 //external modules
 // const {isAuth, isAuthRedirect} = require("./modules")
 //using api route
 // app.use("/", routes)
 app.use("/api", api)
+app.use("/github", github)
 app.use("/", router)
 
 router.get("/", (req, res) => {

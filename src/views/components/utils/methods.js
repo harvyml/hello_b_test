@@ -23,4 +23,4 @@ function parse_date_to_ms(date) {
 }
 
 
-module.exports = { password_validate, parse_date_to_ms, from_ms_to_date_format}
+module.exports = { password_validate, parse_date_to_ms}

@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt")
-
+const axios = require("axios")
 /**
  * Compares and returns an error if:
  * 1. The password and password_validation don't match
@@ -41,6 +41,7 @@ function decrypt_password(password, encrypted_password) {
 }
 
 function findUser(arr, email){
+    arr = arr ? arr : []
     return arr.reduce((acc, el) => {
         if(el.email == email){
             console.log(el.email)
@@ -49,12 +50,25 @@ function findUser(arr, email){
     }, {})
 }
 
-
+async function getGithubUser(access_token){
+    const result = await axios.get("https://api.github.com/user", {
+        params: {
+            client_id: process.env.GITHUB_CLIENT_ID
+        },
+        headers: {
+            Authorization: `token ${access_token}`,
+            Accept: "application/vnd.github.v3+json"
+        }
+    })
+    console.log(result.data)
+    return result.data
+}
 //database queries
 module.exports = {
     password_validation,
     get_user,
     encrypt_password,
     decrypt_password,
-    findUser
+    findUser,
+    getGithubUser
 }

@@ -8,7 +8,9 @@
     --main: #20232a;
 }
 
-
+.display-block-on-desktop{
+    display: block;
+}
 .full-width{
     width: 100%;
 }
@@ -40,6 +42,10 @@ div.col-md-3{
 nav{
     width: 100%;
 }
+
+.desktop-sidebar-container{
+    position: fixed;
+}
 .desktop-sidebar .card{
     background: rgba(255, 255, 255, .1);
     color: white;
@@ -66,4 +72,15 @@ nav{
 }
 .dashboard-header .title{
     padding: .5rem 0;
+}
+
+/* Profile */
+.user-info{
+    list-style: none;
+}
+
+
+/* Github Repos */
+.github-repos .github-user-repos .info-content{
+    color: #0f0f0f;
 }

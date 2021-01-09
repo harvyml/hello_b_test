@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useContext } from "react"
 import ReactDOM from "react-dom"
 import axios from "axios"
-import {UserContext} from "../UserContext"
+import { UserContext } from "../UserContext"
 
-const useUser = (url = "/api/user") => {
+const useGithubUser = (url = "/github/user") => {
     const [state, setState] = useState({})
     const user = useContext(UserContext)
     useEffect(() => {
         axios.get(url).then(snap => {
-            if(snap.data && snap.data.email){
-                setState(snap.data)
-            }else{
-                window.location.href = "/#/signin"
-            }
+            console.log(snap.data)
+            setState(snap.data)
         }).catch(err => setState({}))
-        // setState(user)
+        setState(user)
     }, [])
 
 
     return state
 }
 
-export default useUser;
+export default useGithubUser;

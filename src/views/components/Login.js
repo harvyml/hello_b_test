@@ -4,6 +4,7 @@ import {Container, Row, Col, Button, Form, Modal} from "react-bootstrap"
 import axios from "axios"
 import {NavLink} from "react-router-dom"
 
+
 const Login = () => {
     const [user, setUser] = useState({email: "", password: ""})
     const [error, setError] = useState(false)
@@ -27,9 +28,9 @@ const Login = () => {
 
     function execute_login(e){
         e.preventDefault()
-        axios.post("/api/login", user).then(snap => {
-            if(snap.data.name){
-                window.location.href = "/user?tab=0"
+        axios.post("/api/signin", user).then(snap => {
+            if(snap.data.email){
+                window.location.href = "/#/app"
             }else{
                 setError(true)
             }
@@ -45,8 +46,7 @@ const Login = () => {
                         <Form onSubmit={execute_login}>
                             <Form.Text className="title center-text paddinged"><h4>Sign In</h4></Form.Text>
                             <Form.Text className="text-muted center-text">
-                                Sign in to access a system where you can create and attend to 
-                                conferences!
+                                Sign in to check your Google Calendar and see your github repos!
                             </Form.Text>
                             <Form.Group className="margined-top">
                                 <Form.Control placeholder="Email" id="email" type="text" onChange={updateEmail}/>

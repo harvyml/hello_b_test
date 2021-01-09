@@ -10,6 +10,7 @@ const {
     decrypt_password,
     findUser
 } = require("./modules")
+const { password_validate } = require("../src/views/components/utils/methods")
 
 app.use("/public", express.static("/public/assets"))
 app.use(bodyParser.json())
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //get requests
 app.get("/user", (req, res) => {
     res.json(
-        store.get("currentUser")
+        store.get("currentUser") ? store.get("currentUser") : {}
     )
 })
 
@@ -36,29 +37,35 @@ app.get("/user/get", (req, res) => {
 //session handling
 app.post("/signin", async (req, res) => {
     const { email, password } = req.body
-    // const user = await findUser(store("users"), email)
+    const user = await findUser(store("users"), email)
     compared_password = await decrypt_password(password, user.password)
     if (email == user.email && compared_password) {
+        store("currentUser", {name: user.name, last_name: user.last_name, email: user.email})
         res.json(user)
+    }else{
+        res.json({ err: "Incorrect values" })
     }
-    res.json({ err: "Incorrect values" })
 })
 app.post("/signup", async (req, res) => {
-    const { email, password } = req.body
-    const encrypted_password = await encrypt_password(password)
-    console.log(encrypted_password)
-    try {
-        store.add("users",
-            [{
-                email: email,
-                password: encrypted_password
-            }]
-        );
-        res.json(
-            store.get("users")
-        )
-    } catch (err) {
-        res.json(err)
+    const {name, last_name, email, password, password_validation } = req.body
+    const pass_validation = password_validate(password, password_validation)
+    if(pass_validation.okay){
+        const encrypted_password = await encrypt_password(password)
+        try {
+            store.add("users",
+                [{
+                    name: name,
+                    last_name: last_name,
+                    email: email,
+                    password: encrypted_password
+                }]
+            );
+            res.json(
+                {okay: true}
+            )
+        } catch (err) {
+            res.json(err)
+        }
     }
 })
 

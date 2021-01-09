@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Row, Col, Nav } from "react-bootstrap"
+import { UserContext } from "./UserContext"
 
 
-const Dashboard = ({ board, component, user }) => {
+const Dashboard = ({ board, component }) => {
+    const user = useContext(UserContext)
     const Component = component
     return (
         <Row className="dashboard">
@@ -15,7 +17,7 @@ const Dashboard = ({ board, component, user }) => {
                         <Col sm={7}>
                             <Nav className="justify-content-end dashboard-nav" activeKey="/home">
                                 <Nav.Item>
-                                    <Nav.Link href="/home">Harvy</Nav.Link>
+                                    <Nav.Link href="/home">{user.name}</Nav.Link>
                                 </Nav.Item>
                             </Nav>
                         </Col>
