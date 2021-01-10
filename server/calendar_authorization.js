@@ -62,7 +62,7 @@ app.get("/authorized", async (req, res) => {
   await oAuth2Client.setCredentials(token)
   await store("current_google_user", token)
   console.log(await store("current_google_user"))
-  res.json(token)
+  res.redirect("/#/app/calendar")
 })
 
 module.exports = app
