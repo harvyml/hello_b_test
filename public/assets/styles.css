@@ -11,6 +11,9 @@
 .display-block-on-desktop{
     display: block;
 }
+.float-right-on-desktop{
+    float: right;
+}
 .full-width{
     width: 100%;
 }

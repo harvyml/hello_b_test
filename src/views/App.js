@@ -10,14 +10,15 @@ import Login from "./components/Login"
 import SingUp from "./components/Signup"
 import Profile from "./Profile"
 import Repos from "./Repos"
+import Calendar from "./Calendar"
 import { UserContext } from "./components/UserContext"
 
 const App = () => {
     return (
         <div className="app">
             <HashRouter>
+                <Route exact path="/" component={() => <Redirect to="/app"/>}/>
                 <Route path="/app" component={InnerHashRouter} />
-                <Route path="/" component={() => <Redirect to="/app"/>}/>
                 <Route path="/signin" component={Login} />
                 <Route path="/signup" component={SingUp} />
             </HashRouter>
@@ -36,11 +37,12 @@ const InnerHashRouter = () => {
             <Row className="display-block-on-desktop">
                 <UserContext.Provider value={user}>
                     <Sidebar/>
-                    <Col sm={9}>
+                    <Col sm={9} className="float-right-on-desktop">
                         <div className="content">
                             <Route exact path="/app/profile/" component={Profile} />
                             <Route exact path="/app/" component={Home} />
                             <Route path="/app/github" component={Repos} />
+                            <Route path="/app/calendar" component={Calendar} />
                         </div>
                     </Col>
                 </UserContext.Provider>

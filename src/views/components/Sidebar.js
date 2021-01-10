@@ -32,7 +32,7 @@ const Sidebar = ({ active }) => {
                             <NavLink activeStyle={{
                                 fontWeight: "bold",
                                 color: "green"
-                            }} exact to="/app/stuff"><span className="material-icons">event</span>Calendar</NavLink>
+                            }} exact to="/app/calendar"><span className="material-icons">event</span>Calendar</NavLink>
                             <NavLink activeStyle={{
                                 fontWeight: "bold",
                                 color: "green"

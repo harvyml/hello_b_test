@@ -5,7 +5,7 @@ const fs = require("fs")
 const store = require("store2")
 const bodyParser = require("body-parser")
 const axios = require("axios")
-const { getGithubUser } = require("./modules")
+const { getGithubUser, findValueInArray, compare_and_add_key } = require("./modules")
 const app = express()
 app.use("/public", express.static("./public"))
 app.use(bodyParser.json())
@@ -33,7 +33,6 @@ app.get("/user/authorized", async (req, res) => {
         let user = await getGithubUser(access_token)
         await store("githubCurrentUser", user)
         res.redirect("/#/app/github")
-        res.json(store("githubCurrentUser"))
     })
 })
 
@@ -55,9 +54,26 @@ app.get("/user/repos", async (req, res) => {
         headers: {
             Authorization: `token ${access_token}`
         }
-    }).then(snap => {
-        res.json(snap.data)
+    }).then(async snap => {
+        var current_favorites = await store("favorite_repos")
+        //adding a favorite field to the favorite objects for client rendering
+        var filtering_favorites = compare_and_add_key(current_favorites, snap.data, "id", "favorite")
+        res.json(filtering_favorites)
     }).catch(err => res.json(err))
+})
+
+
+app.post("/user/add/favorite/repo", async (req, res) => {
+    const {repo_id, html_url, repo_name} = req.body
+    const user_key = await store.get("currentUser").email
+    var verify_if_exists = await findValueInArray(store("favorite_repos"), repo_id, "id")
+    if(!verify_if_exists){
+        let new_favorite_repo = [{id: repo_id, favorite_by: user_key, repo_name: repo_name, html_url: html_url}]
+        await store.add(`favorite_repos`, new_favorite_repo)
+        res.json({success: true})
+        return
+    }
+    res.json({success: false})
 })
 
 module.exports = app

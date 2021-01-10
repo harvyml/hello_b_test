@@ -34,6 +34,21 @@ const BoardRepos = () => {
 }
 
 const GithubUserView = ({ githubuser, repos }) => {
+
+    function tabContentClick(e){
+        var action = e.target.getAttribute("action_type")
+        if(action == "make_favorite"){
+            var repo_id = e.target.getAttribute("repo_id")
+            var repo_name = e.target.getAttribute("repo_name")
+            var html_url = e.target.getAttribute("html_url")
+            console.log(repo_id, repo_name, html_url)
+            axios.post("/github/user/add/favorite/repo", {repo_id, repo_name, html_url}).then((snap) => {
+                if(snap.id){
+                    console.log("Successfully added to favorites")
+                }
+            }).catch(err => console.log("There was an error"))
+        }
+    }
     return (
         <div className="github-user-repos">
             <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
@@ -46,7 +61,7 @@ const GithubUserView = ({ githubuser, repos }) => {
                         </ListGroup>
                     </Col>
                     <Col sm={8}>
-                        <Tab.Content>
+                        <Tab.Content onClick={tabContentClick}>
                             {
                                 repos.map((repo, i) => <Repo {...repo} key={i} />)
                             }
@@ -59,13 +74,15 @@ const GithubUserView = ({ githubuser, repos }) => {
     )
 }
 
+function get_repo_from_github(id){
 
+}
 const RepoLink = ({ name, id }) => (
     <ListGroup.Item action href={"/#/app/github/#" + id}>
         {name}
     </ListGroup.Item>
 )
-const Repo = ({ id, name, default_branch, html_url, owner, updated_at, pushed_at }) => {
+const Repo = ({ id, name, default_branch, html_url, owner, updated_at, pushed_at, favorite, onClick }) => {
     return (
         <Tab.Pane eventKey={"/#/app/github/#" + id} >
             <Row>
@@ -97,7 +114,11 @@ const Repo = ({ id, name, default_branch, html_url, owner, updated_at, pushed_at
                     </div>
                 </Col>
                 <Col sm={3}>
-                    <Button variant="light"><span className="material-icons">favorite_border</span></Button>
+                    
+                    {favorite ? (
+                        <Button variant="light"><span className="material-icons" action_type="make_favorite" html_url={html_url} repo_name={name} repo_id={id} onClick={onClick}>favorite</span></Button>
+                        ) : <Button variant="light"><span className="material-icons" action_type="make_favorite" html_url={html_url} repo_name={name} repo_id={id} onClick={onClick}>favorite_border</span></Button>
+                    }
                 </Col>
             </Row>
         </Tab.Pane>

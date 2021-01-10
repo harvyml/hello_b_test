@@ -7,14 +7,14 @@ const useUser = (url = "/api/user") => {
     const [state, setState] = useState({})
     const user = useContext(UserContext)
     useEffect(() => {
-        axios.get(url).then(snap => {
-            if(snap.data && snap.data.email){
-                setState(snap.data)
-            }else{
-                window.location.href = "/#/signin"
-            }
-        }).catch(err => setState({}))
-        // setState(user)
+        // axios.get(url).then(snap => {
+        //     if(snap.data && snap.data.email){
+        //         setState(snap.data)
+        //     }else{
+        //         window.location.href = "/#/signin"
+        //     }
+        // }).catch(err => setState({}))
+        setState(user)
     }, [])
 
 

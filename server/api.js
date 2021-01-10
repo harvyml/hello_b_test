@@ -23,17 +23,6 @@ app.get("/user", (req, res) => {
     )
 })
 
-app.get("/err", (req, res) => {
-    res.status(400).json({ err: { message: "Error" } })
-})
-//get user info from another user
-app.get("/user/get", (req, res) => {
-    get_user(req.query.userId).then(snap => {
-        res.json(snap)
-    }).catch(err => {
-        res.json(err)
-    })
-})
 //session handling
 app.post("/signin", async (req, res) => {
     const { email, password } = req.body
@@ -72,6 +61,7 @@ app.post("/signup", async (req, res) => {
 app.get("/logout", (req, res) => {
     res.redirect("/login")
 })
+
 
 
 

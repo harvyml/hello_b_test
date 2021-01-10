@@ -50,6 +50,33 @@ function findUser(arr, email){
     }, {})
 }
 
+function findValueInArray(arr, value, key){
+    arr = arr ? arr : []
+    return arr.reduce((acc, el) => {
+        if(el[key] == value){
+            return true
+        }
+        return false
+    }, false)
+}
+
+
+function compare_and_add_key(arr1, arr2, key, to_add){
+    arr1 = arr1 ? arr1 : [{id: 12345678}] 
+    arr2 = arr2 ? arr2 : [{id: 12345679}] 
+    let maxlength = arr1.length > arr2.length ? arr1.length : arr2.length
+    for(var i = 0; i < maxlength; i++){
+      var current_key_1 = arr1[i] ? arr1[i][key] : null
+      var current_key_2 = arr2[i] ? arr2[i][key] : null
+      if(arr2[i] && current_key_1 == current_key_2){
+        arr2[i][to_add] = true
+      }else if(arr2[i]){
+        arr2[i][to_add] = false
+      }
+    }
+    return arr2
+}
+
 async function getGithubUser(access_token){
     const result = await axios.get("https://api.github.com/user", {
         params: {
@@ -70,5 +97,7 @@ module.exports = {
     encrypt_password,
     decrypt_password,
     findUser,
-    getGithubUser
+    getGithubUser,
+    findValueInArray,
+    compare_and_add_key
 }
