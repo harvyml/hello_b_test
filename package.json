@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "webpack": "node_modules/.bin/webpack",
-        "start": "webpack & nodemon server/index.js"
+        "start": "webpack & nodemon server/index.js",
+        "serve": "node server/index.js"
     },
     "author": "Harvy Esteban Mosquera Leyton",
     "license": "ISC",

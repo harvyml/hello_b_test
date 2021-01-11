@@ -10,7 +10,6 @@ app.use("/public", express.static("./public"))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-const token_file = require("../token.json")
 const { default: axios } = require("axios")
 
 const auth = new google.auth.OAuth2(
