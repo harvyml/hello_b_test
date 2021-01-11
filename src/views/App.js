@@ -9,8 +9,8 @@ import Dashboard from "./components/Dashboard"
 import Login from "./components/Login"
 import SingUp from "./components/Signup"
 import Profile from "./Profile"
-import Repos from "./Repos"
-import Calendar from "./Calendar"
+import {Repos} from "./Repos"
+import {Calendar} from "./Calendar"
 import { UserContext } from "./components/UserContext"
 
 const App = () => {
@@ -31,16 +31,15 @@ const InnerHashRouter = () => {
     const [allowRoutes, setAllowRoutes] = useState(false)
     const user = useUser()
     const Home = () => <Dashboard board="Home" component={() => <h1>Home</h1>} />
-    const Stuff = () => <Dashboard board="Stuff" component={() => <h1>Stuff</h1>} />
     return (
         <HashRouter>
             <Row className="display-block-on-desktop">
                 <UserContext.Provider value={user}>
                     <Sidebar/>
-                    <Col sm={9} className="float-right-on-desktop">
+                    <Col xs={12} sm={12} md={9} lg={9} className="float-right-on-desktop">
                         <div className="content">
+                            <Route exact path="/app/" component={() => <Redirect to="/app/profile" />} />
                             <Route exact path="/app/profile/" component={Profile} />
-                            <Route exact path="/app/" component={Home} />
                             <Route path="/app/github" component={Repos} />
                             <Route path="/app/calendar" component={Calendar} />
                         </div>

@@ -8,7 +8,6 @@ const useGithubUser = (url = "/github/user") => {
     const user = useContext(UserContext)
     useEffect(() => {
         axios.get(url).then(snap => {
-            console.log(snap.data)
             setState(snap.data)
         }).catch(err => setState({}))
         setState(user)

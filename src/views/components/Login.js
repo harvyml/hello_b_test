@@ -68,9 +68,9 @@ const Login = () => {
 const ModalError = ({show, handleClose}) => (
     <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Error de inicio de sesión</Modal.Title>
+          <Modal.Title>Incorrect email or password</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Revisa si escribiste tu email y contraseña correctamente</Modal.Body>
+        <Modal.Body>Please check if the felds are correct</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

@@ -27,10 +27,8 @@ const auth = new google.auth.OAuth2(
 async function listEvents(auth, req, response) {
     const calendar = google.calendar({ version: 'v3', auth });
     var today_iso_string = new Date().toISOString()
-    console.log("today: ", today_iso_string)
     var next_month_ms_date = new Date().getTime() + (2.628 * (10 ** 9)) //plus one month
     var next_month_iso_date = new Date(next_month_ms_date).toISOString()
-    console.log("next month: ", next_month_iso_date)
     var upcoming_events = await calendar.events.list({
         calendarId: 'primary',
         timeMin: today_iso_string,
@@ -51,10 +49,8 @@ async function listEvents(auth, req, response) {
 async function calendarId(auth, req, response) {
     const calendar = google.calendar({ version: 'v3', auth });
     var today_iso_string = new Date().toISOString()
-    console.log("today: ", today_iso_string)
     var next_month_ms_date = new Date().getTime() + (2.628 * (10 ** 9)) //plus one month
-    var next_month_iso_date = new Date(next_month_ms_date).toISOString()
-    console.log("next month: ", next_month_iso_date)
+    var next_month_iso_date = new Date(next_month_ms_date).toISOString()    
     var upcoming_events = await calendar.events.list({
         calendarId: 'primary',
         timeMin: today_iso_string,

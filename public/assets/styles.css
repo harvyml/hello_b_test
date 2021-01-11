@@ -8,6 +8,13 @@
     --main: #20232a;
 }
 
+ul{
+    list-style: none;
+}
+
+.user-img.img-container img{
+    width: 100%;
+}
 .display-block-on-desktop{
     display: block;
 }
@@ -17,8 +24,14 @@
 .full-width{
     width: 100%;
 }
+.margined{
+    margin: 15px;
+}
 .margined-top{
     margin-top: 10px;
+}
+.margined-bottom{
+    margin-bottom: 10px !important;
 }
 .center{
     margin: auto;
@@ -45,7 +58,6 @@ div.col-md-3{
 nav{
     width: 100%;
 }
-
 .desktop-sidebar-container{
     position: fixed;
 }
@@ -67,14 +79,34 @@ nav{
     vertical-align: sub;
 }
 
+@media (max-width: 768px){
+    .desktop-sidebar-container{
+        position: relative;
+    }
+    .desktop-sidebar{
+        height: auto;
+    }
+    .margined-when-sm{
+        margin-top: 100px;
+    }.btn-make-favorite{
+        margin-bottom: 50px;
+        margin-bottom: 50px;
+        margin: 10px;
+    }
+}
 
 /* Dashboard Header */
 .dashboard .row, .dashboard .col-sm-12, .dashboard .col-sm-3, .dashboard .col-sm-5, .dashboard .col-sm-7{
-    margin: 0;
+    margin: 0 0;
     padding: 0;
 }
-.dashboard-header .title{
-    padding: .5rem 0;
+.dashboard-header{
+    padding: 17px 0;
+}
+
+.section-title h4{
+    margin-bottom: 10px;
+    padding-left: 15px;
 }
 
 /* Profile */
@@ -87,3 +119,22 @@ nav{
 .github-repos .github-user-repos .info-content{
     color: #0f0f0f;
 }
+
+.repo-info-container{
+    margin-top: 50px;
+}
+
+.btn-make-favorite{
+    padding: 0;
+}.btn-make-favorite span{
+    padding: 0.35rem;
+}
+/* Divider */
+.divider{
+    width: 100%;
+    height: 1px;
+    background: rgb(186, 186, 186, 0.5);
+    margin-top: 15px;
+    margin-bottom: 50px;
+}
+

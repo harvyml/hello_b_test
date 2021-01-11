@@ -7,8 +7,6 @@ import { password_validate } from "./utils/methods"
 import { NavLink } from "react-router-dom"
 
 
-
-
 const SignUp = () => {
     const [name, setName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -39,7 +37,7 @@ const SignUp = () => {
         <div className="app">
             <Container fluid>
                 <Row className="justify-content-md-center">
-                    <Col sm={12} md={6} lg={6}>
+                    <Col sm={12} md={5} lg={3}>
                         <Form onSubmit={validateAndSendDataToServer}>
                             <Form.Text className="title center-text paddinged margined-top"><h4>Sign Up</h4></Form.Text>
                             <Form.Text className="center-text">
@@ -51,7 +49,7 @@ const SignUp = () => {
                                 <Form.Control placeholder="Email" id="email" type="email" onChange={(e) => setEmail(e.target.value)} />
                             </Form.Group>
                             <Form.Control placeholder="Contraseña" id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
-                            <Form.Control placeholder="Repetir Contraseña" id="password" type="password" onChange={(e) => setPasswordValidation(e.target.value)} />
+                            <Form.Control placeholder="Repetir Contraseña" id="password-validation" type="password" onChange={(e) => setPasswordValidation(e.target.value)} />
                             <Form.Text className="text-muted"><NavLink to="/signin">¿Did you already sign up? Sign in here</NavLink></Form.Text>
                             <Button type="submit" variant="dark" className="margined-top" id="submit">Sign Up</Button>
 
