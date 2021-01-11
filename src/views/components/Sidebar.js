@@ -1,3 +1,4 @@
+import axios from "axios"
 import React, { useState, useEffect, useContext } from "react"
 import { Row, Col, Nav, Card, Navbar, NavDropdown } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
@@ -9,6 +10,11 @@ const Sidebar = () => {
         color: "green"
     }
     const user = useContext(UserContext)
+    function handleSignout(){
+        axios.get("/api/signout").then(snap => {
+            window.location.href = "/#/"
+        }).catch(err => alert("Something unexpected happened, please reload the page"))
+    }
     return (
         <Col xs={12} sm={12} md={3} lg={3} className="desktop-sidebar-container">
             <nav>
@@ -24,6 +30,7 @@ const Sidebar = () => {
                             <NavLink activeStyle={on_active} exact to="/app/profile"><span className="material-icons">person</span>Profile</NavLink>
                             <NavLink activeStyle={on_active} exact to="/app/calendar"><span className="material-icons">event</span>Calendar</NavLink>
                             <NavLink activeStyle={on_active} exact to="/app/github"><span className="material-icons">folder</span>Repository</NavLink>
+                            <NavLink activeStyle={on_active} onClick={handleSignout} to="/signout"><span className="material-icons">power_settings_new</span>Sign out</NavLink>
                         </Nav>
                     </div>
                 </Row>

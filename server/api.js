@@ -35,6 +35,13 @@ app.post("/signin", async (req, res) => {
         res.json({ err: "Incorrect values" })
     }
 })
+
+//session handling
+app.get("/signout", async (req, res) => {
+    await store("currentUser", {})
+    res.json({okay: true})
+})
+
 app.post("/signup", async (req, res) => {
     const {name, last_name, email, password, password_validation } = req.body
     const pass_validation = password_validate(password, password_validation)

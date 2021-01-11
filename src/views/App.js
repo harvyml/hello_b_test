@@ -28,9 +28,7 @@ const App = () => {
 
 
 const InnerHashRouter = () => {
-    const [allowRoutes, setAllowRoutes] = useState(false)
     const user = useUser()
-    const Home = () => <Dashboard board="Home" component={() => <h1>Home</h1>} />
     return (
         <HashRouter>
             <Row className="display-block-on-desktop">
@@ -39,9 +37,9 @@ const InnerHashRouter = () => {
                     <Col xs={12} sm={12} md={9} lg={9} className="float-right-on-desktop">
                         <div className="content">
                             <Route exact path="/app/" component={() => <Redirect to="/app/profile" />} />
-                            <Route exact path="/app/profile/" component={Profile} />
-                            <Route path="/app/github" component={Repos} />
-                            <Route path="/app/calendar" component={Calendar} />
+                            { user ? <Route exact path="/app/profile/" component={Profile} /> : <Redirect to="/signup"/>}
+                            { user ? <Route path="/app/github" component={Repos} /> : <Redirect to="/signup"/>}
+                            { user ? <Route path="/app/calendar" component={Calendar} /> : <Redirect to="/signup"/>}
                         </div>
                     </Col>
                 </UserContext.Provider>
